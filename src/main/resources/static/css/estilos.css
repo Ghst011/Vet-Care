@@ -1,0 +1,125 @@
+/* ============================================
+   VetCare - Paleta cálida y confiable
+   Verde salvia (salud/cuidado) + Naranja cálido (acento/acción)
+   ============================================ */
+
+:root {
+    --vetcare-verde: #2f6b4f;      /* verde salvia oscuro - confianza, salud */
+    --vetcare-verde-claro: #e8f3ec;
+    --vetcare-naranja: #e8863b;    /* naranja cálido - acento, botones de acción */
+    --vetcare-naranja-oscuro: #c96f28;
+    --vetcare-crema: #fdf8f2;      /* fondo cálido, no blanco puro */
+    --vetcare-texto: #3a3a35;
+}
+
+body {
+    background-color: var(--vetcare-crema);
+    color: var(--vetcare-texto);
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--vetcare-verde) !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* Botones principales -> naranja cálido (acción) */
+.btn-primary {
+    background-color: var(--vetcare-naranja);
+    border-color: var(--vetcare-naranja);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--vetcare-naranja-oscuro);
+    border-color: var(--vetcare-naranja-oscuro);
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.card-header.bg-primary {
+    background-color: var(--vetcare-verde) !important;
+}
+
+/* Tarjetas de módulos del home */
+.card .display-6, .card h1 {
+    color: var(--vetcare-verde);
+}
+
+/* Textos de énfasis en verde en vez del azul default de bootstrap */
+.text-primary {
+    color: var(--vetcare-verde) !important;
+}
+
+/* Tablas */
+thead {
+    background-color: var(--vetcare-verde-claro);
+}
+
+/* Badges de estado de Cita */
+.badge-pendiente { background-color: #f0ad4e; }
+.badge-en-atencion { background-color: #5bc0de; }
+.badge-finalizada { background-color: var(--vetcare-verde); }
+.badge-pagada { background-color: #6c757d; }
+
+/* Footer */
+footer {
+    background-color: var(--vetcare-verde) !important;
+}
+
+/* Alertas informativas con tono cálido */
+.alert-info {
+    background-color: var(--vetcare-verde-claro);
+    border-color: var(--vetcare-verde);
+    color: var(--vetcare-verde);
+}
+
+/* ============================================
+   Layout: sidebar a la derecha + contenido central
+   ============================================ */
+.vetcare-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.vetcare-main {
+    flex: 1;
+    padding: 32px;
+}
+
+.vetcare-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: var(--vetcare-verde);
+    padding: 24px 16px;
+    order: 2; /* la manda a la derecha dentro del flex */
+}
+
+.vetcare-sidebar .nav-link {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.vetcare-sidebar .nav-link:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+
+@media (max-width: 768px) {
+    .vetcare-layout {
+        flex-direction: column;
+    }
+    .vetcare-sidebar {
+        width: 100%;
+        order: -1; /* en móvil, arriba en vez de al costado */
+    }
+}

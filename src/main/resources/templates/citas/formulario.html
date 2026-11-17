@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: header('Nueva cita - VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main">
+        <h2 style="color: var(--vetcare-verde);">Nueva cita</h2>
+
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+			<form id="formCita" th:action="@{/citas/guardar}" method="post" style="max-width: 640px;">            
+				<div class="mb-3">
+                <label class="form-label">Mascota</label>
+                <input type="text" id="buscarMascota" class="form-control" autocomplete="off" required
+                       placeholder="Escribe el nombre de la mascota o del dueño...">
+                <input type="hidden" id="idMascota" name="idMascota">
+                <div id="sugerenciasMascota" class="list-group" style="max-height:180px; overflow-y:auto; display:none;"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Veterinario</label>
+                <select class="form-select" name="idVeterinario" required>
+                    <option value="">-- Selecciona un veterinario --</option>
+                    <option th:each="v : ${veterinarios}"
+                            th:value="${v.idPersona}"
+                            th:text="${v.nombre} + ' ' + ${v.apellido} + ' - ' + ${v.especialidad}"></option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Fecha</label>
+                    <input type="date" class="form-control" name="fecha" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Hora</label>
+                    <input type="time" class="form-control" name="hora" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Motivo</label>
+                <input type="text" class="form-control" name="motivo" required>
+            </div>
+
+				<h5 class="mt-4" style="color: var(--vetcare-verde);">Servicios</h5>
+				<p class="text-muted" style="font-size: 14px;">Marca los
+					servicios que se van a aplicar</p>
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width: 50px"></th>
+							<th>Servicio</th>
+							<th>Precio</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="s : ${servicios}">
+							<td><input type="checkbox"
+								class="form-check-input servicio-checkbox"
+								th:value="${s.idServicio}"></td>
+							<td th:text="${s.nombre}"></td>
+							<td th:text="${s.precio}"></td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="button" class="btn btn-primary" onclick="validarYGuardarCita()">Registrar cita</button>
+        </form>
+        <p class="mt-3"><a th:href="@{/citas}">&larr; Volver al listado</a></p>
+    </main>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+
+<script th:inline="javascript">
+    const mascotas = /*[[${mascotas}]]*/ [];
+</script>
+<script th:src="@{/js/buscador-mascota.js}"></script>
+<div th:replace="~{layout/scripts :: scripts}"></div>
+<script th:src="@{/js/validar-cita.js}"></script>
+</body>
+</html>

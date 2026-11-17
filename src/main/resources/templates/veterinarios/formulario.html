@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: header('Veterinario - VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main">
+        <h2 style="color: var(--vetcare-verde);" th:text="${veterinario.idPersona} != null ? 'Editar veterinario' : 'Nuevo veterinario'"></h2>
+		<form th:action="@{/veterinarios/guardar}" th:object="${veterinario}" method="post" class="mt-3" style="max-width: 480px;"
+      		onsubmit="return confirmarGuardar(this)">
+                  <input type="hidden" th:field="*{idPersona}">
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" th:field="*{apellido}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">DNI</label>
+                <input type="text" class="form-control" th:field="*{dni}" maxlength="8" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="text" class="form-control" th:field="*{telefono}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Especialidad</label>
+                <input type="text" class="form-control" th:field="*{especialidad}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha de contratación</label>
+                <input type="date" class="form-control" th:field="*{fechaContratacion}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Salario</label>
+                <input type="number" step="0.01" class="form-control" th:field="*{salario}" required>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" th:field="*{activo}">
+                <label class="form-check-label">Activo</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+        <p class="mt-3"><a th:href="@{/veterinarios}">&larr; Volver al listado</a></p>
+    </main>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<div th:replace="~{layout/scripts :: scripts}"></div>
+</body>
+</html>

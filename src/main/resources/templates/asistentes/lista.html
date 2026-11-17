@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: header('Asistentes - VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main">
+        <h2 style="color: var(--vetcare-verde);">Asistentes</h2>
+        <a class="btn btn-primary mb-3" th:href="@{/asistentes/nuevo}">+ Nuevo asistente</a>
+        <table class="table table-hover">
+            <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Activo</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="a : ${asistentes}">
+                <td th:text="${a.idPersona}"></td>
+                <td th:text="${a.nombre}"></td>
+                <td th:text="${a.apellido}"></td>
+                <td th:text="${a.activo} ? 'Sí' : 'No'"></td>
+                <td>
+                    <a class="btn btn-sm btn-outline-secondary" th:href="@{/asistentes/editar/{id}(id=${a.idPersona})}">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" href="#" 
+                    	th:onclick="'return confirmarEliminacion(\'' + @{/asistentes/eliminar/{id}(id=${a.idPersona})} + '\')'">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<div th:replace="~{layout/scripts :: scripts}"></div>
+</body>
+</html>

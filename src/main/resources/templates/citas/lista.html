@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/header :: header('Citas - VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main">
+        <h2 style="color: var(--vetcare-verde);">Citas</h2>
+		<a class="btn btn-primary mb-3" th:href="@{/citas/nuevo}" sec:authorize="hasAnyRole('ADMIN','ASISTENTE')">+ Nueva cita</a>
+        <table class="table table-hover">
+            <thead>
+            <tr><th>ID</th><th>Fecha</th><th>Mascota</th><th>Veterinario</th><th>Estado</th><th>Total</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${citas}">
+                <td th:text="${c.idCita}"></td>
+                <td th:text="${c.fecha}"></td>
+                <td th:text="${c.mascota.nombre}"></td>
+                <td th:text="${c.veterinario.nombre} + ' ' + ${c.veterinario.apellido}"></td>
+                <td th:text="${c.estado}"></td>
+                <td th:text="${c.total}"></td>
+                <td>
+                    <a class="btn btn-sm btn-outline-secondary" th:href="@{/citas/detalle/{id}(id=${c.idCita})}">Ver</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+</body>
+</html>

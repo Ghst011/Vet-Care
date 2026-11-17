@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: header('Veterinarios - VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main">
+        <h2 style="color: var(--vetcare-verde);">Veterinarios</h2>
+        <a class="btn btn-primary mb-3" th:href="@{/veterinarios/nuevo}">+ Nuevo veterinario</a>
+        <table class="table table-hover">
+            <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Especialidad</th><th>Salario</th><th>Activo</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="v : ${veterinarios}">
+                <td th:text="${v.idPersona}"></td>
+                <td th:text="${v.nombre}"></td>
+                <td th:text="${v.apellido}"></td>
+                <td th:text="${v.especialidad}"></td>
+                <td th:text="${v.salario}"></td>
+                <td th:text="${v.activo} ? 'Sí' : 'No'"></td>
+                <td>
+                    <a class="btn btn-sm btn-outline-secondary" th:href="@{/veterinarios/editar/{id}(id=${v.idPersona})}">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" href="#" 
+                    	th:onclick="'return confirmarEliminacion(\'' + @{/veterinarios/eliminar/{id}(id=${v.idPersona})} + '\')'">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<div th:replace="~{layout/scripts :: scripts}"></div>
+</body>
+</html>

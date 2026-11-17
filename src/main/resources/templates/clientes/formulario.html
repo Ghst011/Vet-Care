@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: header('Cliente - VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main">
+        <h2 style="color: var(--vetcare-verde);" th:text="${cliente.idPersona} != null ? 'Editar cliente' : 'Nuevo cliente'"></h2>
+        <form th:action="@{/clientes/guardar}" th:object="${cliente}" method="post" class="mt-3" style="max-width: 480px;">
+            <input type="hidden" th:field="*{idPersona}">
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" th:field="*{apellido}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">DNI</label>
+                <input type="text" class="form-control" th:field="*{dni}" maxlength="8" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="text" class="form-control" th:field="*{telefono}">
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" th:field="*{activo}">
+                <label class="form-check-label">Activo</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+        <p class="mt-3"><a th:href="@{/clientes}">&larr; Volver al listado</a></p>
+    </main>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+</body>
+</html>

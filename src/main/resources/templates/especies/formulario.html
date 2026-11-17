@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: header('Especie - VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main">
+        <h2 style="color: var(--vetcare-verde);" th:text="${especie.idEspecie} != null ? 'Editar especie' : 'Nueva especie'"></h2>
+        <form th:action="@{/especies/guardar}" th:object="${especie}" method="post" class="mt-3" style="max-width: 480px;">
+            <input type="hidden" th:field="*{idEspecie}">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+        <p class="mt-3"><a th:href="@{/especies}">&larr; Volver al listado</a></p>
+    </main>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+</body>
+</html>

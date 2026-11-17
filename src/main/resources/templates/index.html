@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/header :: header('VetCare')}"></head>
+<body>
+<div class="vetcare-layout">
+    <main class="vetcare-main d-flex flex-column align-items-center justify-content-center text-center">
+
+        <svg width="220" height="220" viewBox="0 0 220 220" class="mb-4">
+            <circle cx="110" cy="110" r="100" fill="#e8f3ec"/>
+            <g fill="#2f6b4f">
+                <ellipse cx="110" cy="130" rx="38" ry="30"/>
+                <ellipse cx="68" cy="95" rx="16" ry="20"/>
+                <ellipse cx="152" cy="95" rx="16" ry="20"/>
+                <ellipse cx="88" cy="70" rx="13" ry="16"/>
+                <ellipse cx="132" cy="70" rx="13" ry="16"/>
+            </g>
+            <g fill="#e8863b">
+                <rect x="100" y="150" width="20" height="6" rx="2"/>
+                <rect x="107" y="143" width="6" height="20" rx="2"/>
+            </g>
+        </svg>
+
+        <h1 class="fw-bold" style="color: var(--vetcare-verde);">Bienvenido a VetCare</h1>
+        <p class="lead text-secondary" style="max-width: 480px;">
+            Gestionando el cuidado de tus pacientes, un paso a la vez.
+        </p>
+        <p class="text-muted">
+            Usa el menú para navegar entre clientes, mascotas, citas y más.
+        </p>
+    </main>
+
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+</body>
+</html>
