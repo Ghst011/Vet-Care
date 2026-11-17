@@ -21,7 +21,7 @@ public class PagoServiceImpl implements PagoService {
         return pagoRepository.findAll();
     }
 
-
+ // metodo que usaré con Mockito: busca el pago de una cita y lanza excepción si no existe
     @Override
     public Pago obtenerPorCita(Integer idCita) {
         return pagoRepository.findByCitaIdCita(idCita)

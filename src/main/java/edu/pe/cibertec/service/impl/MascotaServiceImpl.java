@@ -36,7 +36,8 @@ public class MascotaServiceImpl implements MascotaService {
     public void eliminar(Integer id) {
         mascotaRepository.deleteById(id);
     }
-
+    
+ // Método a evaluar con JUnit: devuelve las mascotas que pertenecen a un cliente
     @Override
     public List<Mascota> listarPorCliente(Integer idCliente) {
         return mascotaRepository.findByClienteIdPersona(idCliente);
